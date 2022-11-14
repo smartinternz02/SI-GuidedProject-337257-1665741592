@@ -1,0 +1,1988 @@
+{
+  "name": "Movie Ticketing Bot",
+  "type": "action",
+  "valid": true,
+  "status": "Available",
+  "created": "2022-11-10T02:54:56.374Z",
+  "updated": "2022-11-12T14:08:03.551Z",
+  "language": "en",
+  "skill_id": "7089f064-7caf-490a-a982-9f0188412299",
+  "workspace": {
+    "actions": [
+      {
+        "steps": [
+          {
+            "step": "step_729",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Hi, I'm Your Assistant.\n\nI can help you in Booking Movie tickets."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "context": {
+              "variables": []
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I'm sorry, I did not catch that, please restate your response."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3,
+              "response_collection_behavior": "optionally_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_729",
+            "next_step": "step_568"
+          },
+          {
+            "step": "step_568",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "In which Location are you Looking for ?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Warangal",
+                      "value": {
+                        "input": {
+                          "text": "Warangal"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Hyderabad",
+                      "value": {
+                        "input": {
+                          "text": "Hyderabad"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Select a valid option:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_36965",
+              "max_tries": 3,
+              "response_collection_behavior": "optionally_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_568",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_729"
+                },
+                {
+                  "scalar": "yes"
+                }
+              ]
+            },
+            "next_step": "step_625"
+          },
+          {
+            "step": "step_625",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "You have Ended process  in Middle. \n\nTry Again."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_729"
+                }
+              ]
+            },
+            "variable": "step_625",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_729"
+                },
+                {
+                  "scalar": "no"
+                }
+              ]
+            },
+            "next_step": "step_728"
+          },
+          {
+            "step": "step_728",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Choose a Theatre below."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Prasad Multiplex",
+                      "value": {
+                        "input": {
+                          "text": "Prasad Multiplex"
+                        }
+                      }
+                    },
+                    {
+                      "label": "PVR Cinemas",
+                      "value": {
+                        "input": {
+                          "text": "PVR Cinemas"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Asian Cinemas",
+                      "value": {
+                        "input": {
+                          "text": "Asian Cinemas"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Select a valid option:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_2658",
+              "max_tries": 3,
+              "response_collection_behavior": "optionally_ask"
+            },
+            "resolver": {
+              "type": "invoke_another_action",
+              "invoke_action": {
+                "action": "action_43992",
+                "parameters": null,
+                "result_variable": "step_728_result_1"
+              }
+            },
+            "variable": "step_728",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_568"
+                },
+                {
+                  "value": "Hyderabad",
+                  "from_entity": "entity_36965"
+                }
+              ]
+            },
+            "next_step": "step_510"
+          },
+          {
+            "step": "step_510",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Choose a Theatre below."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Asian Gemini",
+                      "value": {
+                        "input": {
+                          "text": "Asian Gemini"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Amrutha",
+                      "value": {
+                        "input": {
+                          "text": "Amrutha"
+                        }
+                      }
+                    },
+                    {
+                      "label": "PVR Madox",
+                      "value": {
+                        "input": {
+                          "text": "PVR Madox"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Select a valid option:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_21761",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "invoke_another_action",
+              "invoke_action": {
+                "action": "action_43992",
+                "parameters": null,
+                "result_variable": "step_510_result_1"
+              }
+            },
+            "variable": "step_510",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_568"
+                },
+                {
+                  "value": "Warangal",
+                  "from_entity": "entity_36965"
+                }
+              ]
+            },
+            "next_step": "step_945"
+          },
+          {
+            "step": "step_945",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "You have Ended process  in Middle.\n\nTry Again."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_729"
+                }
+              ]
+            },
+            "variable": "step_945",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_729"
+                },
+                {
+                  "scalar": "no"
+                }
+              ]
+            },
+            "next_step": "step_362"
+          },
+          {
+            "step": "step_362",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "You have Ended process  in Middle. \n\nTry Again."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "replay",
+              "clear": [
+                {
+                  "variable": "step_729"
+                }
+              ]
+            },
+            "variable": "step_362",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_729"
+                },
+                {
+                  "scalar": "no"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Hello",
+        "action": "action_35559",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_35559_intent_9061"
+        },
+        "variables": [
+          {
+            "variable": "step_362",
+            "data_type": "any"
+          },
+          {
+            "title": "Choose a Theatre below.",
+            "variable": "step_510",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_510_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "In which Location are you Looking for ?",
+            "variable": "step_568",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_568_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_625",
+            "data_type": "any"
+          },
+          {
+            "title": "Choose a Theatre below.",
+            "variable": "step_728",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_728_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Hi, I'm Your Assistant. I can help you in Booking Movie tickets.",
+            "variable": "step_729",
+            "data_type": "yes_no"
+          },
+          {
+            "variable": "step_729_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "You have Ended process in Middle. Try Again.",
+            "variable": "step_945",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "fallback",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_408",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Here is the list of Movies,"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "RRR-Telugu",
+                      "value": {
+                        "input": {
+                          "text": "RRR-Telugu"
+                        }
+                      }
+                    },
+                    {
+                      "label": "KGF-Telugu",
+                      "value": {
+                        "input": {
+                          "text": "KGF-Telugu"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Avengers-English",
+                      "value": {
+                        "input": {
+                          "text": "Avengers-English"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Select a valid option:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_44389",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_408",
+            "next_step": "step_502"
+          },
+          {
+            "step": "step_502",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "choose the date"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "response_type": "date",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I'm sorry, I did not catch that, please restate your response."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-date",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_502",
+            "condition": {
+              "or": [
+                {
+                  "in": [
+                    {
+                      "variable": "step_408"
+                    },
+                    {
+                      "collection": [
+                        {
+                          "value": "RRR-Telugu",
+                          "from_entity": "entity_44389"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "in": [
+                    {
+                      "variable": "step_408"
+                    },
+                    {
+                      "collection": [
+                        {
+                          "value": "KGF-Telugu",
+                          "from_entity": "entity_44389"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "in": [
+                    {
+                      "variable": "step_408"
+                    },
+                    {
+                      "collection": [
+                        {
+                          "value": "Avengers-English",
+                          "from_entity": "entity_44389"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_836"
+          },
+          {
+            "step": "step_836",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Choose show timings"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Morning show(10:00am)",
+                      "value": {
+                        "input": {
+                          "text": "Morning show(10:00am)"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Noon show(2:00pm)",
+                      "value": {
+                        "input": {
+                          "text": "Noon show(2:00pm)"
+                        }
+                      }
+                    },
+                    {
+                      "label": "Night show(9:00pm)",
+                      "value": {
+                        "input": {
+                          "text": "Night show(9:00pm)"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Select a valid option:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_42412",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_836",
+            "next_step": "step_254"
+          },
+          {
+            "step": "step_254",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "How many seats you would like to Book?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Enter a number."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-number",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_254",
+            "condition": {
+              "or": [
+                {
+                  "eq": [
+                    {
+                      "variable": "step_836"
+                    },
+                    {
+                      "value": "Morning show(10:00am)",
+                      "from_entity": "entity_42412"
+                    }
+                  ]
+                },
+                {
+                  "eq": [
+                    {
+                      "variable": "step_836"
+                    },
+                    {
+                      "value": "Noon show(2:00pm)",
+                      "from_entity": "entity_42412"
+                    }
+                  ]
+                },
+                {
+                  "eq": [
+                    {
+                      "variable": "step_836"
+                    },
+                    {
+                      "value": "Night show(9:00pm)",
+                      "from_entity": "entity_42412"
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_651"
+          },
+          {
+            "step": "step_651",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Choose the Price of Movie Ticket."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "250/- ",
+                      "value": {
+                        "input": {
+                          "text": "250/- "
+                        }
+                      }
+                    },
+                    {
+                      "label": "110/-",
+                      "value": {
+                        "input": {
+                          "text": "110/-"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Select a valid option:"
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "entity_1151",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_651",
+            "condition": {
+              "lt": [
+                {
+                  "variable": "step_254"
+                },
+                {
+                  "scalar": "10"
+                }
+              ]
+            },
+            "next_step": "step_742"
+          },
+          {
+            "step": "step_742",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Please, Enter your Mobile Number."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I didn't catch that. Enter a number."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-number",
+              "max_tries": 3,
+              "response_collection_behavior": "always_ask"
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_742",
+            "condition": {
+              "or": [
+                {
+                  "eq": [
+                    {
+                      "variable": "step_651"
+                    },
+                    {
+                      "value": "250/- ",
+                      "from_entity": "entity_1151"
+                    }
+                  ]
+                },
+                {
+                  "eq": [
+                    {
+                      "variable": "step_651"
+                    },
+                    {
+                      "value": "110/-",
+                      "from_entity": "entity_1151"
+                    }
+                  ]
+                }
+              ]
+            },
+            "next_step": "step_734"
+          },
+          {
+            "step": "step_734",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Check your Mobile for SMS, We sent you Movie Tickets Payment Link."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                },
+                {
+                  "options": [
+                    {
+                      "label": "Yes",
+                      "value": {
+                        "input": {
+                          "text": "Yes"
+                        }
+                      }
+                    },
+                    {
+                      "label": "No",
+                      "value": {
+                        "input": {
+                          "text": "No"
+                        }
+                      }
+                    }
+                  ],
+                  "response_type": "option",
+                  "repeat_on_reprompt": true
+                }
+              ]
+            },
+            "handlers": [
+              {
+                "type": "not_found",
+                "title": "validation_not_found_handler",
+                "output": {
+                  "generic": [
+                    {
+                      "values": [
+                        {
+                          "text": "I'm sorry, I did not catch that, please restate your response."
+                        }
+                      ],
+                      "response_type": "text"
+                    }
+                  ]
+                },
+                "handler": "validation_not_found_handler",
+                "resolver": {
+                  "type": "prompt_again"
+                },
+                "next_handler": "validation_not_found_max_tries_handler"
+              },
+              {
+                "type": "not_found_max_tries",
+                "title": "validation_not_found_max_tries_handler",
+                "handler": "validation_not_found_max_tries_handler",
+                "resolver": {
+                  "type": "fallback"
+                }
+              }
+            ],
+            "question": {
+              "entity": "sys-yes-no",
+              "max_tries": 3
+            },
+            "resolver": {
+              "type": "continue"
+            },
+            "variable": "step_734",
+            "condition": {
+              "lt": [
+                {
+                  "variable": "step_742"
+                },
+                {
+                  "scalar": "10000000000"
+                }
+              ]
+            },
+            "next_step": "step_506"
+          },
+          {
+            "step": "step_506",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Thank You, Happiee Movie Time."
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_506",
+            "condition": {
+              "eq": [
+                {
+                  "variable": "step_734"
+                },
+                {
+                  "scalar": "yes"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Select a Movie,",
+        "action": "action_43992",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "action_43992_intent_41128"
+        },
+        "variables": [
+          {
+            "title": "How many seats you would like to Book?",
+            "variable": "step_254",
+            "data_type": "number"
+          },
+          {
+            "title": "Here is the list of Movies,",
+            "variable": "step_408",
+            "data_type": "any"
+          },
+          {
+            "title": "choose the date",
+            "variable": "step_502",
+            "data_type": "date"
+          },
+          {
+            "title": "Thank You, Happiee Movie Time.",
+            "variable": "step_506",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_510_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_568_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Choose the Price of Movie Ticket.",
+            "variable": "step_651",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_728_result_1",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_729_result_1",
+            "data_type": "any"
+          },
+          {
+            "title": "Check your Mobile for SMS, We sent you Movie Tickets Payment Lin",
+            "variable": "step_734",
+            "data_type": "yes_no"
+          },
+          {
+            "title": "Please, Enter your Mobile Number.",
+            "variable": "step_742",
+            "data_type": "number"
+          },
+          {
+            "title": "Choose show timings",
+            "variable": "step_836",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_35559",
+        "topic_switch": {
+          "allowed_from": true,
+          "allowed_into": true
+        },
+        "disambiguation_opt_out": false
+      },
+      {
+        "steps": [
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "I'm afraid I don't understand. Please rephrase your question."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_001",
+            "condition": {
+              "lte": [
+                {
+                  "system_variable": "no_action_matches_count"
+                },
+                {
+                  "scalar": 3
+                }
+              ]
+            },
+            "next_step": "step_002"
+          },
+          {
+            "step": "step_002",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": ""
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "invoke_another_action_and_end",
+              "invoke_action": {
+                "action": "fallback",
+                "parameters": null,
+                "result_variable": "step_002_result_1"
+              }
+            },
+            "variable": "step_002",
+            "condition": {
+              "gt": [
+                {
+                  "system_variable": "no_action_matches_count"
+                },
+                {
+                  "scalar": 3
+                }
+              ]
+            }
+          }
+        ],
+        "title": "No action matches",
+        "action": "anything_else",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "expression": "anything_else"
+        },
+        "variables": [
+          {
+            "title": "I am afraid I do not understand what you are asking, please re-p",
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_002",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_002_result_1",
+            "data_type": "any"
+          }
+        ],
+        "disambiguation_opt_out": true
+      },
+      {
+        "steps": [
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "I'm afraid I don't understand. I can connect you to an agent."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_001",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Step validation failed"
+                }
+              ]
+            },
+            "next_step": "step_002"
+          },
+          {
+            "step": "step_002",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "Sorry I couldn't assist you. I will connect you to an agent right away."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_002",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "Agent requested"
+                }
+              ]
+            },
+            "next_step": "step_003"
+          },
+          {
+            "step": "step_003",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text": "I am afraid I do not understand what you are asking, let me connect you to an agent."
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "connect_to_agent",
+              "response": {
+                "transfer_info": {
+                  "target": {}
+                },
+                "agent_available": {
+                  "message": "Let's send you to an available agent."
+                },
+                "agent_unavailable": {
+                  "message": "There are no agents available at this time. When one becomes available, we'll connect you."
+                },
+                "message_to_human_agent": ""
+              }
+            },
+            "variable": "step_003",
+            "condition": {
+              "eq": [
+                {
+                  "system_variable": "fallback_reason"
+                },
+                {
+                  "scalar": "No action matches"
+                }
+              ]
+            }
+          }
+        ],
+        "title": "Fallback",
+        "action": "fallback",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "intent": "fallback_connect_to_agent"
+        },
+        "variables": [
+          {
+            "title": "I'm afraid I don't understand. I can connect you to an agent.",
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "title": "Sorry I couldn't assist you. I will connect you to an agent righ",
+            "variable": "step_002",
+            "data_type": "any"
+          },
+          {
+            "title": "I am afraid I do not understand what you are asking, let me conn",
+            "variable": "step_003",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "anything_else",
+        "disambiguation_opt_out": true
+      },
+      {
+        "steps": [
+          {
+            "step": "step_001",
+            "output": {
+              "generic": [
+                {
+                  "values": [
+                    {
+                      "text_expression": {
+                        "concat": [
+                          {
+                            "scalar": "Welcome, how can I assist you?"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "response_type": "text",
+                  "selection_policy": "sequential"
+                }
+              ]
+            },
+            "handlers": [],
+            "resolver": {
+              "type": "end_action"
+            },
+            "variable": "step_001"
+          }
+        ],
+        "title": "Greet customer",
+        "action": "welcome",
+        "boosts": [],
+        "handlers": [],
+        "condition": {
+          "expression": "welcome"
+        },
+        "variables": [
+          {
+            "title": "Welcome, how can I assist you?",
+            "variable": "step_001",
+            "data_type": "any"
+          },
+          {
+            "variable": "step_729_result_1",
+            "data_type": "any"
+          }
+        ],
+        "next_action": "action_43992",
+        "disambiguation_opt_out": true
+      }
+    ],
+    "intents": [
+      {
+        "intent": "action_35559_intent_9061",
+        "examples": [
+          {
+            "text": "Good to see you"
+          },
+          {
+            "text": "Hee"
+          },
+          {
+            "text": "Heeey"
+          },
+          {
+            "text": "Hello"
+          },
+          {
+            "text": "hey"
+          },
+          {
+            "text": "heyy"
+          },
+          {
+            "text": "hie"
+          },
+          {
+            "text": "Hiee"
+          },
+          {
+            "text": "hiiiii"
+          },
+          {
+            "text": "how to book movie tickets"
+          },
+          {
+            "text": "#Movie booking"
+          },
+          {
+            "text": "Movies to watch"
+          },
+          {
+            "text": "where to book movie tickets?"
+          }
+        ]
+      },
+      {
+        "intent": "action_43992_intent_41128",
+        "examples": [
+          {
+            "text": "How many movies are available ?"
+          },
+          {
+            "text": "how to book a movie ?"
+          },
+          {
+            "text": "M"
+          },
+          {
+            "text": "movie booking"
+          },
+          {
+            "text": "movies?"
+          },
+          {
+            "text": "movies to watch?"
+          },
+          {
+            "text": "wanna watch movie"
+          },
+          {
+            "text": "what are available Movies to watch ?"
+          },
+          {
+            "text": "what are Movies to book?"
+          },
+          {
+            "text": "what are new movies released ?"
+          }
+        ]
+      },
+      {
+        "intent": "fallback_connect_to_agent",
+        "examples": [
+          {
+            "text": "Agent help"
+          },
+          {
+            "text": "Call agent"
+          },
+          {
+            "text": "Can I connect to an agent?"
+          },
+          {
+            "text": "I would like to speak to a human"
+          },
+          {
+            "text": "I would like to speak to someone"
+          }
+        ],
+        "description": "Please transfer me to an agent"
+      }
+    ],
+    "entities": [
+      {
+        "entity": "entity_1151",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "110/-",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "250/- ",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_21761",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Amrutha",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Asian Gemini",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "PVR Madox",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_2658",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Asian Cinemas",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Prasad Multiplex",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "PVR Cinemas",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_36965",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Hyderabad",
+            "synonyms": [
+              "Telangana"
+            ]
+          },
+          {
+            "type": "synonyms",
+            "value": "Warangal",
+            "synonyms": [
+              "Hanmakonda"
+            ]
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_42412",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Morning show(10:00am)",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Night show(9:00pm)",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "Noon show(2:00pm)",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "entity_44389",
+        "values": [
+          {
+            "type": "synonyms",
+            "value": "Avengers-English",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "KGF-Telugu",
+            "synonyms": []
+          },
+          {
+            "type": "synonyms",
+            "value": "RRR-Telugu",
+            "synonyms": []
+          }
+        ],
+        "fuzzy_match": true
+      },
+      {
+        "entity": "sys-date",
+        "values": []
+      },
+      {
+        "entity": "sys-number",
+        "values": []
+      },
+      {
+        "entity": "sys-time",
+        "values": []
+      },
+      {
+        "entity": "sys-yes-no",
+        "values": []
+      }
+    ],
+    "metadata": {
+      "api_version": {
+        "major_version": "v2",
+        "minor_version": "2018-11-08"
+      }
+    },
+    "variables": [],
+    "data_types": [],
+    "counterexamples": [],
+    "system_settings": {
+      "off_topic": {
+        "enabled": true
+      },
+      "topic_switch": {
+        "enabled": true,
+        "messages": {
+          "confirm_return": {
+            "text": "Return to previous topic?"
+          },
+          "confirm_switch": {
+            "text": "Switch from the current topic?"
+          }
+        },
+        "question_steps_threshold": 2
+      },
+      "disambiguation": {
+        "prompt": "Did you mean:",
+        "enabled": true,
+        "randomize": true,
+        "max_suggestions": 5,
+        "suggestion_text_policy": "title",
+        "none_of_the_above_prompt": "None of the above"
+      },
+      "intent_classification": {
+        "training_backend_version": "v2"
+      },
+      "spelling_auto_correct": true
+    },
+    "learning_opt_out": false
+  },
+  "description": "created for assistant a0319f73-609d-4412-8b5a-935faecb2ee0",
+  "assistant_id": "a0319f73-609d-4412-8b5a-935faecb2ee0",
+  "workspace_id": "7089f064-7caf-490a-a982-9f0188412299",
+  "dialog_settings": {},
+  "next_snapshot_version": "1"
+}
